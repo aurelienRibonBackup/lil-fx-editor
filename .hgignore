@@ -1,0 +1,5 @@
+syntax: glob
+build/classes/*
+manifest.mf
+nbbuild.xml
+nbproject/*
