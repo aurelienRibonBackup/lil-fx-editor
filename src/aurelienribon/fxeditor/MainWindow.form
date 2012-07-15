@@ -30,25 +30,28 @@
                   <Component id="renderOptionPanel" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="startColorPanel" linkSize="2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="startColorVariancePanel" linkSize="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="startColorPanel" linkSize="8" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="startColorVariancePanel" linkSize="8" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="endColorPanel" linkSize="2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="endColorVariancePanel" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="particleConfigPanel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="endColorPanel" linkSize="8" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="endColorVariancePanel" linkSize="8" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="particleConfigPanel" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jLabel24" alignment="1" pref="315" max="32767" attributes="0"/>
-                  <Component id="effectPanel" alignment="1" max="32767" attributes="0"/>
-                  <Component id="emitterConfigPanel" alignment="1" max="32767" attributes="0"/>
-                  <Component id="comment" alignment="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="effectPanel" linkSize="7" min="-2" max="-2" attributes="0"/>
+                  <Component id="hintsLabel" linkSize="7" min="-2" pref="305" max="-2" attributes="0"/>
+                  <Component id="emitterConfigPanel" linkSize="7" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="versionLabel" linkSize="7" min="-2" pref="305" max="-2" attributes="0"/>
+                      <Component id="logoLabel" linkSize="7" alignment="1" min="-2" pref="305" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -61,31 +64,33 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="effectPanel" min="-2" pref="189" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="effectPanel" max="32767" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="emitterConfigPanel" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="particleConfigPanel" max="32767" attributes="0"/>
+                          <Component id="particleConfigPanel" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="comment" min="-2" pref="73" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="startColorVariancePanel" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="startColorPanel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="startColorVariancePanel" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="endColorPanel" min="-2" max="-2" attributes="0"/>
-                                  <Component id="endColorVariancePanel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="endColorVariancePanel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="endColorPanel" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="hintsLabel" min="-2" pref="61" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="logoLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="versionLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -139,7 +144,7 @@
                           <Component id="cvDrawBgImageChk" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="44" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="bgClearBtn" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="bgSetBtn" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -425,27 +430,27 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" linkSize="5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="emMaxParticlesSlider" pref="222" max="32767" attributes="0"/>
+                          <Component id="emMaxParticlesSlider" pref="212" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" linkSize="5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="emDelaySlider" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" linkSize="5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="emDurationSlider" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel36" linkSize="5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Component id="emGravityXSlider" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel37" linkSize="5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Component id="emGravityYSlider" max="32767" attributes="0"/>
                       </Group>
@@ -537,14 +542,14 @@
         </Component>
         <Component class="aurelienribon.fxeditor.CompactSlider" name="emGravityXSlider">
           <Properties>
-            <Property name="max" type="float" value="10.0"/>
-            <Property name="min" type="float" value="-10.0"/>
+            <Property name="max" type="float" value="3.0"/>
+            <Property name="min" type="float" value="-3.0"/>
           </Properties>
         </Component>
         <Component class="aurelienribon.fxeditor.CompactSlider" name="emGravityYSlider">
           <Properties>
-            <Property name="max" type="float" value="10.0"/>
-            <Property name="min" type="float" value="-10.0"/>
+            <Property name="max" type="float" value="3.0"/>
+            <Property name="min" type="float" value="-3.0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel37">
@@ -573,84 +578,85 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel17" linkSize="6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="pEndRotSlider" max="32767" attributes="0"/>
+                          <Component id="pEndRotSlider" pref="167" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel13" linkSize="6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Component id="pAngleSlider" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel4" linkSize="6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Component id="pLifespanSlider" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel8" linkSize="6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Component id="pStartSizeSlider" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel11" linkSize="6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Component id="pEndSizeSlider" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel14" linkSize="6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Component id="pStartRotSlider" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" linkSize="6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="pLifespanVarianceSlider" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel12" linkSize="6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="pAngleVarianceSlider" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel9" linkSize="6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="pStartSizeVarianceSlider" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel10" linkSize="6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="pEndSizeVarianceSlider" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel15" linkSize="6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="pStartRotVarianceSlider" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel16" linkSize="6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="pEndRotVarianceSlider" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel18" linkSize="6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Component id="pSpeedSlider" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="pXVarianceSlider" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel19" linkSize="6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="pSpeedVarianceSlider" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel6" linkSize="6" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel7" linkSize="6" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="pYVarianceSlider" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="pXVarianceSlider" max="32767" attributes="0"/>
+                              <Component id="pYVarianceSlider" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -890,172 +896,28 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="startColorPanel">
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel20" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel21" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel23" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel22" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="pStartColorASlider" pref="107" max="32767" attributes="0"/>
-                      <Component id="pStartColorBSlider" pref="0" max="32767" attributes="0"/>
-                      <Component id="pStartColorRSlider" pref="0" max="32767" attributes="0"/>
-                      <Component id="pStartColorGSlider" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
-                      <Component id="pStartColorRSlider" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel21" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="pStartColorGSlider" alignment="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel23" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="pStartColorBSlider" alignment="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel22" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="pStartColorASlider" alignment="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="aurelienribon.fxeditor.CompactSlider" name="pStartColorBSlider">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel23">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="B"/>
-          </Properties>
-        </Component>
-        <Component class="aurelienribon.fxeditor.CompactSlider" name="pStartColorASlider">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel20">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="R"/>
-          </Properties>
-        </Component>
-        <Component class="aurelienribon.fxeditor.CompactSlider" name="pStartColorGSlider">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel22">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="A"/>
-          </Properties>
-        </Component>
-        <Component class="aurelienribon.fxeditor.CompactSlider" name="pStartColorRSlider">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel21">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="G"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
-    <Container class="javax.swing.JPanel" name="endColorPanel">
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel34" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel32" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel35" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel33" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="pEndColorASlider" alignment="0" pref="107" max="32767" attributes="0"/>
-                      <Component id="pEndColorBSlider" alignment="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="pEndColorGSlider" alignment="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="pEndColorRSlider" alignment="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel32" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="pEndColorRSlider" alignment="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel34" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="pEndColorGSlider" alignment="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel35" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="pEndColorBSlider" alignment="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel33" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="pEndColorASlider" alignment="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel34">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="G"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel35">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="B"/>
-          </Properties>
-        </Component>
-        <Component class="aurelienribon.fxeditor.CompactSlider" name="pEndColorGSlider">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel32">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="R"/>
-          </Properties>
-        </Component>
-        <Component class="aurelienribon.fxeditor.CompactSlider" name="pEndColorASlider">
-        </Component>
-        <Component class="aurelienribon.fxeditor.CompactSlider" name="pEndColorBSlider">
-        </Component>
-        <Component class="aurelienribon.fxeditor.CompactSlider" name="pEndColorRSlider">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel33">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="A"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
+    <Component class="javax.swing.JLabel" name="logoLabel">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/res/gfx/logo.png"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="hintsLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="9" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt; Right click on a slider to precisely adjust its value.&lt;br/&gt;&lt;br/&gt; On the canvas: hold left button to move the effect, hold right button to move the emitter. &lt;/html&gt;"/>
+        <Property name="verticalAlignment" type="int" value="1"/>
+      </Properties>
+    </Component>
+    <Component class="aurelienribon.utils.misc.VersionLabel" name="versionLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="versionLabel1"/>
+      </Properties>
+    </Component>
     <Container class="javax.swing.JPanel" name="startColorVariancePanel">
 
       <Layout>
@@ -1071,7 +933,7 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="pStartColorAVarianceSlider" alignment="0" pref="107" max="32767" attributes="0"/>
+                      <Component id="pStartColorAVarianceSlider" alignment="0" pref="111" max="32767" attributes="0"/>
                       <Component id="pStartColorBVarianceSlider" alignment="0" pref="0" max="32767" attributes="0"/>
                       <Component id="pStartColorRVarianceSlider" alignment="0" pref="0" max="32767" attributes="0"/>
                       <Component id="pStartColorGVarianceSlider" alignment="0" pref="0" max="32767" attributes="0"/>
@@ -1139,6 +1001,89 @@
         </Component>
       </SubComponents>
     </Container>
+    <Container class="javax.swing.JPanel" name="endColorPanel">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel34" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel32" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel35" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel33" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="pEndColorASlider" alignment="0" pref="111" max="32767" attributes="0"/>
+                      <Component id="pEndColorBSlider" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="pEndColorGSlider" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="pEndColorRSlider" alignment="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jLabel32" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="pEndColorRSlider" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jLabel34" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="pEndColorGSlider" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jLabel35" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="pEndColorBSlider" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jLabel33" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="pEndColorASlider" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabel34">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="G"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel35">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="B"/>
+          </Properties>
+        </Component>
+        <Component class="aurelienribon.fxeditor.CompactSlider" name="pEndColorGSlider">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel32">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="R"/>
+          </Properties>
+        </Component>
+        <Component class="aurelienribon.fxeditor.CompactSlider" name="pEndColorASlider">
+        </Component>
+        <Component class="aurelienribon.fxeditor.CompactSlider" name="pEndColorBSlider">
+        </Component>
+        <Component class="aurelienribon.fxeditor.CompactSlider" name="pEndColorRSlider">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel33">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="A"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
     <Container class="javax.swing.JPanel" name="endColorVariancePanel">
 
       <Layout>
@@ -1154,7 +1099,7 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="pEndColorAVarianceSlider" alignment="0" pref="107" max="32767" attributes="0"/>
+                      <Component id="pEndColorAVarianceSlider" alignment="0" pref="111" max="32767" attributes="0"/>
                       <Component id="pEndColorBVarianceSlider" alignment="0" pref="0" max="32767" attributes="0"/>
                       <Component id="pEndColorGVarianceSlider" alignment="0" pref="0" max="32767" attributes="0"/>
                       <Component id="pEndColorRVarianceSlider" alignment="0" pref="0" max="32767" attributes="0"/>
@@ -1222,19 +1167,88 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel24">
-      <Properties>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/res/gfx/logo.png"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="comment">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt; Right click on a slider to precisely adjust its value.&lt;br/&gt; On the canvas: hold left button to move the effect, hold right button to move the emitter. &lt;/html&gt;"/>
-        <Property name="verticalAlignment" type="int" value="1"/>
-      </Properties>
-    </Component>
+    <Container class="javax.swing.JPanel" name="startColorPanel">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel20" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel21" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel23" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel22" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="pStartColorASlider" pref="111" max="32767" attributes="0"/>
+                      <Component id="pStartColorBSlider" pref="0" max="32767" attributes="0"/>
+                      <Component id="pStartColorRSlider" pref="0" max="32767" attributes="0"/>
+                      <Component id="pStartColorGSlider" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
+                      <Component id="pStartColorRSlider" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jLabel21" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="pStartColorGSlider" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jLabel23" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="pStartColorBSlider" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jLabel22" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="pStartColorASlider" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="aurelienribon.fxeditor.CompactSlider" name="pStartColorBSlider">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel23">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="B"/>
+          </Properties>
+        </Component>
+        <Component class="aurelienribon.fxeditor.CompactSlider" name="pStartColorASlider">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel20">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="R"/>
+          </Properties>
+        </Component>
+        <Component class="aurelienribon.fxeditor.CompactSlider" name="pStartColorGSlider">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel22">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="A"/>
+          </Properties>
+        </Component>
+        <Component class="aurelienribon.fxeditor.CompactSlider" name="pStartColorRSlider">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel21">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="G"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

@@ -12,6 +12,9 @@ import aurelienribon.utils.notifications.AutoListModel;
 import com.badlogic.gdx.Gdx;
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -20,7 +23,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -41,6 +43,15 @@ public class MainWindow extends javax.swing.JFrame {
 	private List<ParticleEmitter> emitters;
 
 	public MainWindow(final Canvas canvas, Component canvasCmp) {
+		try {
+			Font squareFont = Font.createFont(Font.TRUETYPE_FONT, Res.getStream("fonts/SquareFont.ttf"));
+			Font showCardGothicFont = Font.createFont(Font.TRUETYPE_FONT, Res.getStream("fonts/ShowCardGothic.ttf"));
+			GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(squareFont);
+			GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(showCardGothicFont);
+		} catch (FontFormatException ex) {
+		} catch (IOException ex) {
+		}
+
 		this.canvas = canvas;
 
 		setContentPane(new PaintedPanel());
@@ -59,7 +70,12 @@ public class MainWindow extends javax.swing.JFrame {
 		bgClearBtn.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) {clearBackground();}});
 
 		emittersList.setModel(new AutoListModel<ParticleEmitter>(new ArrayList<ParticleEmitter>()));
+		emittersList.setCellRenderer(emittersListCellRenderer);
+		emittersList.addListSelectionListener(emittersListSelectionListener);
 		emittersListSelectionListener.valueChanged(null);
+
+		versionLabel.init("1.0.0", "http://www.aurelienribon.com/projects/lil-fx-editor/versions.txt", "http://code.google.com/p/lil-fx-editor/");
+		versionLabel.checkUpdate();
 
 		SwingStyle.init();
 		ArStyle.init();
@@ -73,7 +89,8 @@ public class MainWindow extends javax.swing.JFrame {
 		Style.registerCssClasses(startColorVariancePanel, ".titledPanel", "#startColorVariancePanel");
 		Style.registerCssClasses(endColorVariancePanel, ".titledPanel", "#endColorVariancePanel");
 		Style.registerCssClasses(headerPanel, ".headerPanel");
-		Style.registerCssClasses(comment, ".comment");
+		Style.registerCssClasses(hintsLabel, ".comment");
+		Style.registerCssClasses(versionLabel, ".versionLabel");
 		Style.apply(getContentPane(), new Style(Res.getUrl("css/style.css")));
 
 		final Timer timer = new Timer(100, new ActionListener() {
@@ -85,8 +102,6 @@ public class MainWindow extends javax.swing.JFrame {
 
 		addWindowListener(new WindowAdapter() {
 			@Override public void windowOpened(WindowEvent e) {
-				emittersList.setCellRenderer(emittersListCellRenderer);
-				emittersList.addListSelectionListener(emittersListSelectionListener);
 				setEffect(ParticleEffectIo.loadFromFile(Gdx.files.classpath("res/data/presets/fire - candle.effect"), Assets.getDefaultParticlesAtlas()));
 			}
 
@@ -102,7 +117,6 @@ public class MainWindow extends javax.swing.JFrame {
 			JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 			ParticleEmitter emitter = (ParticleEmitter) value;
 			label.setText(emitter.name);
-			label.setBorder(BorderFactory.createEmptyBorder(3, 5, 3, 5));
 			return label;
 		}
 	};
@@ -405,24 +419,9 @@ public class MainWindow extends javax.swing.JFrame {
         pSpeedSlider = new aurelienribon.fxeditor.CompactSlider();
         pSpeedVarianceSlider = new aurelienribon.fxeditor.CompactSlider();
         jLabel19 = new javax.swing.JLabel();
-        startColorPanel = new javax.swing.JPanel();
-        pStartColorBSlider = new aurelienribon.fxeditor.CompactSlider();
-        jLabel23 = new javax.swing.JLabel();
-        pStartColorASlider = new aurelienribon.fxeditor.CompactSlider();
-        jLabel20 = new javax.swing.JLabel();
-        pStartColorGSlider = new aurelienribon.fxeditor.CompactSlider();
-        jLabel22 = new javax.swing.JLabel();
-        pStartColorRSlider = new aurelienribon.fxeditor.CompactSlider();
-        jLabel21 = new javax.swing.JLabel();
-        endColorPanel = new javax.swing.JPanel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        pEndColorGSlider = new aurelienribon.fxeditor.CompactSlider();
-        jLabel32 = new javax.swing.JLabel();
-        pEndColorASlider = new aurelienribon.fxeditor.CompactSlider();
-        pEndColorBSlider = new aurelienribon.fxeditor.CompactSlider();
-        pEndColorRSlider = new aurelienribon.fxeditor.CompactSlider();
-        jLabel33 = new javax.swing.JLabel();
+        logoLabel = new javax.swing.JLabel();
+        hintsLabel = new javax.swing.JLabel();
+        versionLabel = new aurelienribon.utils.misc.VersionLabel();
         startColorVariancePanel = new javax.swing.JPanel();
         pStartColorBVarianceSlider = new aurelienribon.fxeditor.CompactSlider();
         jLabel28 = new javax.swing.JLabel();
@@ -432,6 +431,15 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel30 = new javax.swing.JLabel();
         pStartColorRVarianceSlider = new aurelienribon.fxeditor.CompactSlider();
         jLabel31 = new javax.swing.JLabel();
+        endColorPanel = new javax.swing.JPanel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        pEndColorGSlider = new aurelienribon.fxeditor.CompactSlider();
+        jLabel32 = new javax.swing.JLabel();
+        pEndColorASlider = new aurelienribon.fxeditor.CompactSlider();
+        pEndColorBSlider = new aurelienribon.fxeditor.CompactSlider();
+        pEndColorRSlider = new aurelienribon.fxeditor.CompactSlider();
+        jLabel33 = new javax.swing.JLabel();
         endColorVariancePanel = new javax.swing.JPanel();
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
@@ -441,8 +449,15 @@ public class MainWindow extends javax.swing.JFrame {
         pEndColorBVarianceSlider = new aurelienribon.fxeditor.CompactSlider();
         pEndColorRVarianceSlider = new aurelienribon.fxeditor.CompactSlider();
         jLabel41 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        comment = new javax.swing.JLabel();
+        startColorPanel = new javax.swing.JPanel();
+        pStartColorBSlider = new aurelienribon.fxeditor.CompactSlider();
+        jLabel23 = new javax.swing.JLabel();
+        pStartColorASlider = new aurelienribon.fxeditor.CompactSlider();
+        jLabel20 = new javax.swing.JLabel();
+        pStartColorGSlider = new aurelienribon.fxeditor.CompactSlider();
+        jLabel22 = new javax.swing.JLabel();
+        pStartColorRSlider = new aurelienribon.fxeditor.CompactSlider();
+        jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lil' Fx-Editor");
@@ -498,7 +513,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(cvLinearFilterChk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cvDrawBgImageChk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(renderOptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bgClearBtn, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(bgSetBtn, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -636,11 +651,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel36.setText("Gravity X");
 
-        emGravityXSlider.setMax(10.0F);
-        emGravityXSlider.setMin(-10.0F);
+        emGravityXSlider.setMax(3.0F);
+        emGravityXSlider.setMin(-3.0F);
 
-        emGravityYSlider.setMax(10.0F);
-        emGravityYSlider.setMin(-10.0F);
+        emGravityYSlider.setMax(3.0F);
+        emGravityYSlider.setMin(-3.0F);
 
         jLabel37.setText("Gravity Y");
 
@@ -658,7 +673,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, emitterConfigPanelLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(emMaxParticlesSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
+                        .addComponent(emMaxParticlesSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
                     .addGroup(emitterConfigPanelLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -682,6 +697,9 @@ public class MainWindow extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
+
+        emitterConfigPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel1, jLabel2, jLabel3, jLabel36, jLabel37});
+
         emitterConfigPanelLayout.setVerticalGroup(
             emitterConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(emitterConfigPanelLayout.createSequentialGroup()
@@ -774,7 +792,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addGroup(particleConfigPanelLayout.createSequentialGroup()
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pEndRotSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(pEndRotSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
                     .addGroup(particleConfigPanelLayout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -824,19 +842,22 @@ public class MainWindow extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pSpeedSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(particleConfigPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pXVarianceSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(particleConfigPanelLayout.createSequentialGroup()
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pSpeedVarianceSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(particleConfigPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addGroup(particleConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pYVarianceSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(particleConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pXVarianceSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pYVarianceSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
+
+        particleConfigPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel10, jLabel11, jLabel12, jLabel13, jLabel14, jLabel15, jLabel16, jLabel17, jLabel18, jLabel19, jLabel4, jLabel5, jLabel6, jLabel7, jLabel8, jLabel9});
+
         particleConfigPanelLayout.setVerticalGroup(
             particleConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(particleConfigPanelLayout.createSequentialGroup()
@@ -907,6 +928,162 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        logoLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/gfx/logo.png"))); // NOI18N
+
+        hintsLabel.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
+        hintsLabel.setText("<html> Right click on a slider to precisely adjust its value.<br/><br/> On the canvas: hold left button to move the effect, hold right button to move the emitter. </html>");
+        hintsLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        versionLabel.setText("versionLabel1");
+
+        jLabel28.setText("B");
+
+        jLabel29.setText("R");
+
+        jLabel30.setText("A");
+
+        jLabel31.setText("G");
+
+        javax.swing.GroupLayout startColorVariancePanelLayout = new javax.swing.GroupLayout(startColorVariancePanel);
+        startColorVariancePanel.setLayout(startColorVariancePanelLayout);
+        startColorVariancePanelLayout.setHorizontalGroup(
+            startColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(startColorVariancePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(startColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel29)
+                    .addComponent(jLabel31)
+                    .addComponent(jLabel28)
+                    .addComponent(jLabel30))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(startColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pStartColorAVarianceSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                    .addComponent(pStartColorBVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(pStartColorRVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(pStartColorGVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        startColorVariancePanelLayout.setVerticalGroup(
+            startColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(startColorVariancePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(startColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel29)
+                    .addComponent(pStartColorRVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(startColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel31)
+                    .addComponent(pStartColorGVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(startColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel28)
+                    .addComponent(pStartColorBVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(startColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel30)
+                    .addComponent(pStartColorAVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel34.setText("G");
+
+        jLabel35.setText("B");
+
+        jLabel32.setText("R");
+
+        jLabel33.setText("A");
+
+        javax.swing.GroupLayout endColorPanelLayout = new javax.swing.GroupLayout(endColorPanel);
+        endColorPanel.setLayout(endColorPanelLayout);
+        endColorPanelLayout.setHorizontalGroup(
+            endColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(endColorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(endColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel34)
+                    .addComponent(jLabel32)
+                    .addComponent(jLabel35)
+                    .addComponent(jLabel33))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(endColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pEndColorASlider, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                    .addComponent(pEndColorBSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(pEndColorGSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(pEndColorRSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        endColorPanelLayout.setVerticalGroup(
+            endColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(endColorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(endColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel32)
+                    .addComponent(pEndColorRSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(endColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel34)
+                    .addComponent(pEndColorGSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(endColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel35)
+                    .addComponent(pEndColorBSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(endColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel33)
+                    .addComponent(pEndColorASlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        jLabel38.setText("G");
+
+        jLabel39.setText("B");
+
+        jLabel40.setText("R");
+
+        jLabel41.setText("A");
+
+        javax.swing.GroupLayout endColorVariancePanelLayout = new javax.swing.GroupLayout(endColorVariancePanel);
+        endColorVariancePanel.setLayout(endColorVariancePanelLayout);
+        endColorVariancePanelLayout.setHorizontalGroup(
+            endColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(endColorVariancePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(endColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel38)
+                    .addComponent(jLabel40)
+                    .addComponent(jLabel39)
+                    .addComponent(jLabel41))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(endColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pEndColorAVarianceSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                    .addComponent(pEndColorBVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(pEndColorGVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(pEndColorRVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        endColorVariancePanelLayout.setVerticalGroup(
+            endColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(endColorVariancePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(endColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel40)
+                    .addComponent(pEndColorRVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(endColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel38)
+                    .addComponent(pEndColorGVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(endColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel39)
+                    .addComponent(pEndColorBVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(endColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel41)
+                    .addComponent(pEndColorAVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
         jLabel23.setText("B");
 
         jLabel20.setText("R");
@@ -928,7 +1105,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jLabel22))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(startColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pStartColorASlider, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                    .addComponent(pStartColorASlider, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                     .addComponent(pStartColorBSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(pStartColorRSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(pStartColorGSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -959,159 +1136,6 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel34.setText("G");
-
-        jLabel35.setText("B");
-
-        jLabel32.setText("R");
-
-        jLabel33.setText("A");
-
-        javax.swing.GroupLayout endColorPanelLayout = new javax.swing.GroupLayout(endColorPanel);
-        endColorPanel.setLayout(endColorPanelLayout);
-        endColorPanelLayout.setHorizontalGroup(
-            endColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(endColorPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(endColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel34)
-                    .addComponent(jLabel32)
-                    .addComponent(jLabel35)
-                    .addComponent(jLabel33))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(endColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pEndColorASlider, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                    .addComponent(pEndColorBSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(pEndColorGSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(pEndColorRSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        endColorPanelLayout.setVerticalGroup(
-            endColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(endColorPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(endColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel32)
-                    .addComponent(pEndColorRSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(endColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel34)
-                    .addComponent(pEndColorGSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(endColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel35)
-                    .addComponent(pEndColorBSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(endColorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel33)
-                    .addComponent(pEndColorASlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        jLabel28.setText("B");
-
-        jLabel29.setText("R");
-
-        jLabel30.setText("A");
-
-        jLabel31.setText("G");
-
-        javax.swing.GroupLayout startColorVariancePanelLayout = new javax.swing.GroupLayout(startColorVariancePanel);
-        startColorVariancePanel.setLayout(startColorVariancePanelLayout);
-        startColorVariancePanelLayout.setHorizontalGroup(
-            startColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(startColorVariancePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(startColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel29)
-                    .addComponent(jLabel31)
-                    .addComponent(jLabel28)
-                    .addComponent(jLabel30))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(startColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pStartColorAVarianceSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                    .addComponent(pStartColorBVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(pStartColorRVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(pStartColorGVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        startColorVariancePanelLayout.setVerticalGroup(
-            startColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(startColorVariancePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(startColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel29)
-                    .addComponent(pStartColorRVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(startColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel31)
-                    .addComponent(pStartColorGVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(startColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel28)
-                    .addComponent(pStartColorBVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(startColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel30)
-                    .addComponent(pStartColorAVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jLabel38.setText("G");
-
-        jLabel39.setText("B");
-
-        jLabel40.setText("R");
-
-        jLabel41.setText("A");
-
-        javax.swing.GroupLayout endColorVariancePanelLayout = new javax.swing.GroupLayout(endColorVariancePanel);
-        endColorVariancePanel.setLayout(endColorVariancePanelLayout);
-        endColorVariancePanelLayout.setHorizontalGroup(
-            endColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(endColorVariancePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(endColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel38)
-                    .addComponent(jLabel40)
-                    .addComponent(jLabel39)
-                    .addComponent(jLabel41))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(endColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pEndColorAVarianceSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                    .addComponent(pEndColorBVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(pEndColorGVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(pEndColorRVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        endColorVariancePanelLayout.setVerticalGroup(
-            endColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(endColorVariancePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(endColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel40)
-                    .addComponent(pEndColorRVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(endColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel38)
-                    .addComponent(pEndColorGVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(endColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel39)
-                    .addComponent(pEndColorBVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(endColorVariancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel41)
-                    .addComponent(pEndColorAVarianceSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/gfx/logo.png"))); // NOI18N
-
-        comment.setText("<html> Right click on a slider to precisely adjust its value.<br/> On the canvas: hold left button to move the effect, hold right button to move the emitter. </html>");
-        comment.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1122,24 +1146,28 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(renderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(renderOptionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(startColorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(startColorVariancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(particleConfigPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(endColorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(endColorVariancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(particleConfigPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(endColorVariancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                    .addComponent(effectPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(emitterConfigPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(comment, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(effectPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hintsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emitterConfigPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(versionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(logoLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {effectPanel, emitterConfigPanel, hintsLabel, logoLabel, versionLabel});
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {endColorPanel, endColorVariancePanel, startColorPanel, startColorVariancePanel});
 
@@ -1150,26 +1178,28 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(effectPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(effectPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(emitterConfigPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(particleConfigPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(11, 11, 11)
+                            .addComponent(particleConfigPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(comment, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel24))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(startColorVariancePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(startColorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(startColorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(startColorVariancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(endColorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(endColorVariancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addComponent(endColorVariancePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(endColorPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(hintsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(logoLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(versionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(renderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1182,7 +1212,6 @@ public class MainWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bgClearBtn;
     private javax.swing.JButton bgSetBtn;
-    private javax.swing.JLabel comment;
     private aurelienribon.fxeditor.CompactSlider cvBgBSlider;
     private aurelienribon.fxeditor.CompactSlider cvBgGSlider;
     private aurelienribon.fxeditor.CompactSlider cvBgRSlider;
@@ -1205,6 +1234,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel endColorPanel;
     private javax.swing.JPanel endColorVariancePanel;
     private javax.swing.JPanel headerPanel;
+    private javax.swing.JLabel hintsLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1221,7 +1251,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
@@ -1250,6 +1279,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar4;
     private javax.swing.JToolBar jToolBar7;
     private javax.swing.JButton loadEffectBtn;
+    private javax.swing.JLabel logoLabel;
     private javax.swing.JButton moveDownEmitterBtn;
     private javax.swing.JButton moveUpEmitterBtn;
     private javax.swing.JButton newEmitterBtn;
@@ -1291,6 +1321,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton saveEffectBtn;
     private javax.swing.JPanel startColorPanel;
     private javax.swing.JPanel startColorVariancePanel;
+    private aurelienribon.utils.misc.VersionLabel versionLabel;
     // End of variables declaration//GEN-END:variables
 
 }

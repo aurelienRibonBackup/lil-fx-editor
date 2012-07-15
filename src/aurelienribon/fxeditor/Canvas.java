@@ -61,7 +61,7 @@ public class Canvas extends ApplicationAdapter {
 
 		infoLabel = new Sprite(Assets.getWhiteTex());
 		infoLabel.setPosition(0, 0);
-		infoLabel.setSize(110, 55);
+		infoLabel.setSize(130, 75);
 		infoLabel.setColor(new Color(0x2A/255f, 0x3B/255f, 0x56/255f, 180/255f));
 
 		infoSprite = new Sprite(Assets.getInfoTex());
@@ -89,6 +89,7 @@ public class Canvas extends ApplicationAdapter {
 			drawer.begin(ShapeRenderer.ShapeType.Rectangle);
 			drawer.setColor(Color.WHITE);
 			drawer.rect(-0.5f+effect.getX(), -0.5f+effect.getY(), 1, 1);
+			drawer.rect(effect.getX()-0.025f, effect.getY()-0.025f, 0.05f, 0.05f);
 			drawer.end();
 
 			Vector2 infoSpritePos = worldToScreen(effect.getX()-0.5f, effect.getY()-0.5f).sub(0, infoSprite.getHeight());
@@ -133,6 +134,11 @@ public class Canvas extends ApplicationAdapter {
 		batch.begin();
 		font.setColor(Color.WHITE);
 		infoLabel.draw(batch);
+		if (effect != null) {
+			font.draw(batch, "# particles: " + effect.getParticlesCount(), 10, 65);
+		} else {
+			font.draw(batch, "# particles: ---", 10, 65);
+		}
 		font.draw(batch, String.format(Locale.US, "Zoom: %.0f %%", 100f / camera.zoom), 10, 45);
 		font.draw(batch, "Fps: " + Gdx.graphics.getFramesPerSecond(), 10, 25);
 		batch.end();

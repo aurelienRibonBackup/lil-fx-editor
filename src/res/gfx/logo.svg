@@ -75,30 +75,6 @@
     </filter>
     <filter
        inkscape:collect="always"
-       id="filter3851"
-       x="-0.10271894"
-       width="1.2054379"
-       y="-0.12507514"
-       height="1.2501503">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="3.2081327"
-         id="feGaussianBlur3853" />
-    </filter>
-    <filter
-       inkscape:collect="always"
-       id="filter3795"
-       x="-0.12521739"
-       width="1.2504348"
-       y="-0.12521739"
-       height="1.2504348">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="2.8723468"
-         id="feGaussianBlur3797" />
-    </filter>
-    <filter
-       inkscape:collect="always"
        id="filter3818">
       <feGaussianBlur
          inkscape:collect="always"
@@ -136,9 +112,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="485.52903"
-     inkscape:cy="492.77992"
+     inkscape:zoom="1.979899"
+     inkscape:cx="711.44437"
+     inkscape:cy="502.73901"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -256,5 +232,19 @@
          id="tspan3824"
          x="383.60519"
          y="722.71234">Lil'</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:19.55150032px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Segoe UI;-inkscape-font-specification:Segoe UI"
+       x="694.44385"
+       y="528.33264"
+       id="text3780"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="D:\Dev\Java\little-fx-editor\src\res\gfx\logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3782"
+         x="694.44385"
+         y="528.33264">Aurelien Ribon's</tspan></text>
   </g>
 </svg>

@@ -43,7 +43,7 @@ javax-swing-JSlider{
 	-ar-border-header-fill: lineargradient(0, 0, 0, 1, 0, #4D6082, 1, #3D5277);
 	-ar-border-margin: 3 6;
 	-ar-border-foreground: #FFF;
-	-swing-font-style: bold;
+	-swing-font: "ShowCard Gothic" plain 11;
 }
 
 #effectPanel {-ar-border-title: "Particle Effect";}
@@ -103,37 +103,15 @@ javax-swing-JSlider{
  * Misc
  ******************************************************************************/
 
-.centerText {
-	-swing-horizontalalignment: center;
-}
-
-.bold {
-	-swing-font-style: bold;
-}
-
-.listPanel {
-	-swing-border: lineborder(#4D6082);
-}
+.center {-swing-horizontalalignment: center;}
+.bold {-swing-font-style: bold;}
+.comment {-swing-foreground: #AAC; -swing-font-size: 9;}
 
 .versionLabel {
-	-swing-foreground: #000;
-	-swing-border: emptyborder(0, 10, 0, 10);
+	-swing-border: matteborder(1, 0, 1, 0, #88A);
+	-swing-foreground: #FFF;
 	-swing-font-size: 10;
+	-swing-horizontalalignment: right;
 }
-
-.versionPanel {
-	-swing-background: #FFF;
-}
-
-.darklink {
-	-swing-foreground: #228;
-}
-
-.darklink:hover {
-	-swing-foreground: #003;
-}
-
-.comment {
-	-swing-foreground: #AAC;
-	-swing-font-size: 9;
-}
+.versionLabel:error {-swing-foreground: #F88;}
+.versionLabel:newVersion {-swing-foreground: #8F8;}

@@ -167,4 +167,10 @@ public class ParticleEffect {
 		}
 		return true;
 	}
+
+	public int getParticlesCount() {
+		int cnt = 0;
+		for (int i=0, n=emitters.size(); i<n; i++) cnt += emitters.get(i).getParticlesCount();
+		return cnt;
+	}
 }

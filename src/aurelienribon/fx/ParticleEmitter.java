@@ -200,4 +200,8 @@ public class ParticleEmitter {
 	public boolean isKilled() {
 		return killed;
 	}
+
+	public int getParticlesCount() {
+		return particles.size();
+	}
 }
